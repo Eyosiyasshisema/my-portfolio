@@ -26,15 +26,17 @@ const AnimatedDiv = ({ children, className, delay }) => {
       },
       { threshold: 0.1 }
     );
+
     if (ref.current) {
       observer.observe(ref.current);
     }
+
     return () => {
       if (ref.current) {
         observer.unobserve(ref.current);
       }
     };
-  }, [ref]);
+  }, []); 
 
   return (
     <div
@@ -50,6 +52,7 @@ const AnimatedDiv = ({ children, className, delay }) => {
 function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [showBackToTop, setShowBackToTop] = useState(false);
+  
   const navigateTo = (section) => {
     setActiveSection(section);
     setTimeout(() => {
@@ -70,7 +73,7 @@ function App() {
         case 'journey':
           sectionId = 'journey-section';
           break;
-          case 'projects':
+        case 'projects':
           sectionId = 'projects-section';
           break;
         case 'tech-stacks':
@@ -107,10 +110,10 @@ function App() {
       } else if (tech && scrollPosition > tech.offsetTop) {
         setActiveSection('tech-stacks');
       } 
-        else if (projects && scrollPosition > projects.offsetTop) {
+      else if (projects && scrollPosition > projects.offsetTop) {
         setActiveSection('projects');
       }
-        else if (journey && scrollPosition > journey.offsetTop) {
+      else if (journey && scrollPosition > journey.offsetTop) {
         setActiveSection('journey');
       } else if (education && scrollPosition > education.offsetTop) {
         setActiveSection('education');
@@ -143,7 +146,7 @@ function App() {
           Eyosiyas.dev
         </a>
         <div className="hidden md:flex space-x-6 text-lg">
-          {['home', 'slogan', 'about', 'education', 'journey',  'projects','tech-stacks', 'contact'].map((section) => (
+          {['home', 'slogan', 'about', 'education', 'journey', 'projects', 'tech-stacks', 'contact'].map((section) => (
             <a
               key={section}
               href={`/#${section}`}
@@ -196,7 +199,7 @@ function App() {
       <div className="container mx-auto text-center max-w-6xl">
         <AnimatedDiv delay={0}>
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-blue-400 leading-tight">
-           For every problem, there's a solution. I build the software to make it happen.
+            For every problem, there's a solution. I build the software to make it happen.
           </h2>
         </AnimatedDiv>
         <AnimatedDiv delay={200}>
@@ -238,7 +241,7 @@ function App() {
           if (ref) observer.unobserve(ref);
         });
       };
-    }, [paragraphRefs]);
+    }, []);
   
     return (
       <section id="about-section" className="min-h-screen flex items-center justify-center bg-gray-900 text-white py-20 px-8">
@@ -248,7 +251,7 @@ function App() {
               About Me
             </h2>
             <p
-              ref={el => paragraphRefs.current[0] = el}
+              ref={el => (paragraphRefs.current[0] = el)}
               data-index="0"
               className={`text-lg md:text-xl font-light leading-relaxed transition-colors duration-500 ${
                 activeParagraph === 0 ? 'text-white' : 'text-gray-400'
@@ -257,7 +260,7 @@ function App() {
               Hi, I'm Eyosiyas, a backend engineer from Ethiopia, driven by a deep passion for solving real-world problems through technology. This commitment is what initially drew me to the world of software development and continues to fuel my dedication to building impactful applications.
             </p>
             <p
-              ref={el => paragraphRefs.current[1] = el}
+              ref={el => (paragraphRefs.current[1] = el)}
               data-index="1"
               className={`text-lg md:text-xl font-light leading-relaxed transition-colors duration-500 ${
                 activeParagraph === 1 ? 'text-white' : 'text-gray-400'
@@ -266,7 +269,7 @@ function App() {
               My expertise lies in designing and implementing robust, scalable applications. While my focus is on backend engineering, I'm adept at creating the server-side architecture for both web and mobile applications, as well as developing complete web apps. I thrive on the challenge of building solutions that are not only functional but also efficient and reliable.
             </p>
             <p
-              ref={el => paragraphRefs.current[2] = el}
+              ref={el => (paragraphRefs.current[2] = el)}
               data-index="2"
               className={`text-lg md:text-xl font-light leading-relaxed transition-colors duration-500 ${
                 activeParagraph === 2 ? 'text-white' : 'text-gray-400'
@@ -369,7 +372,7 @@ function App() {
       </section>
     );
   };
-const ProjectsSection = () => {
+  const ProjectsSection = () => {
     const projectsData = [
       {
         id: 1,
@@ -442,7 +445,6 @@ const ProjectsSection = () => {
     );
   };
 
-
   const TechStacksSection = () => {
     const techLogos = [
       'https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg',
@@ -480,7 +482,7 @@ const ProjectsSection = () => {
             {techLogos.map((logo, index) => (
               <AnimatedDiv key={index} delay={index * 100}>
                 <div className="p-4 bg-gray-700 rounded-lg shadow-xl cursor-pointer hover:scale-110 rotate-3 transition-transform duration-300">
-                  <img src={logo} alt="Tech " className="h-16 w-16 md:h-20 md:w-20 object-contain" />
+                  <img src={logo} alt={`Tech logo ${index}`} className="h-16 w-16 md:h-20 md:w-20 object-contain" />
                 </div>
               </AnimatedDiv>
             ))}
@@ -491,96 +493,97 @@ const ProjectsSection = () => {
   };
 
   const ContactForm = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [submissionStatus, setSubmissionStatus] = useState(''); 
+    const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+    const [submissionStatus, setSubmissionStatus] = useState(''); 
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({ ...prevState, [name]: value }));
-  };
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData(prevState => ({ ...prevState, [name]: value }));
+    };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setSubmissionStatus('Sending...'); 
-    try {
-      const response = await fetch('http://localhost:3001/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      setSubmissionStatus('Sending...'); 
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
 
-      if (response.ok) {
-        setSubmissionStatus('Message sent successfully!');
-        setFormData({ name: '', email: '', message: '' }); 
-      } else {
-        const errorData = await response.json();
-        setSubmissionStatus(`Failed to send message: ${errorData.message}`);
+        if (response.ok) {
+          setSubmissionStatus('Message sent successfully!');
+          setFormData({ name: '', email: '', message: '' }); 
+        } else {
+          const errorData = await response.json();
+          setSubmissionStatus(`Failed to send message: ${errorData.message}`);
+        }
+      } catch (error) {
+        console.error('Submission error:', error);
+        setSubmissionStatus('An unexpected error occurred. Please try again.');
       }
-    } catch (error) {
-      console.error('Submission error:', error);
-      setSubmissionStatus('An unexpected error occurred. Please try again.');
-    }
+    };
+
+    return (
+      <section id="contact-section" className="py-16">
+        <h2 className="text-4xl font-bold text-center text-blue-400 mb-12">Get In Touch</h2>
+        <div className="max-w-xl mx-auto bg-gray-800 p-8 rounded-lg shadow-xl">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label htmlFor="name" className="block text-gray-300 text-lg font-medium mb-2">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full p-3 rounded-md bg-gray-700 text-gray-100 border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-gray-300 text-lg font-medium mb-2">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full p-3 rounded-md bg-gray-700 text-gray-100 border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="message" className="block text-gray-300 text-lg font-medium mb-2">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                value={formData.message}
+                onChange={handleChange}
+                className="w-full p-3 rounded-md bg-gray-700 text-gray-100 border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+                required
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-md shadow-lg transform hover:scale-105 transition duration-300 ease-in-out"
+            >
+              Send Message
+            </button>
+            {submissionStatus && (
+              <p className={`mt-4 text-center font-medium ${submissionStatus.includes('successfully') ? 'text-green-400' : 'text-red-400'}`}>
+                {submissionStatus}
+              </p>
+            )}
+          </form>
+        </div>
+      </section>
+    );
   };
 
-  return (
-    <section id="contact-section" className="py-16">
-      <h2 className="text-4xl font-bold text-center text-blue-400 mb-12">Get In Touch</h2>
-      <div className="max-w-xl mx-auto bg-gray-800 p-8 rounded-lg shadow-xl">
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor="name" className="block text-gray-300 text-lg font-medium mb-2">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full p-3 rounded-md bg-gray-700 text-gray-100 border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="email" className="block text-gray-300 text-lg font-medium mb-2">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full p-3 rounded-md bg-gray-700 text-gray-100 border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="message" className="block text-gray-300 text-lg font-medium mb-2">Message</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="5"
-              value={formData.message}
-              onChange={handleChange}
-              className="w-full p-3 rounded-md bg-gray-700 text-gray-100 border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
-              required
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-md shadow-lg transform hover:scale-105 transition duration-300 ease-in-out"
-          >
-            Send Message
-          </button>
-          {submissionStatus && (
-            <p className={`mt-4 text-center font-medium ${submissionStatus.includes('successfully') ? 'text-green-400' : 'text-red-400'}`}>
-              {submissionStatus}
-            </p>
-          )}
-        </form>
-      </div>
-    </section>
-  );
-};
   const ContactSection = () => (
     <section id="contact-section" className="min-h-screen flex items-center justify-center bg-gray-800 text-white py-20 px-8">
       <div className="container mx-auto text-center max-w-4xl">
