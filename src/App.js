@@ -393,7 +393,7 @@ function App() {
         title: 'Portfolio Website',
         description: 'The very website you are viewing! A personal portfolio showcasing projects, skills, and contact information. Designed with a clean, minimalist aesthetic and full responsiveness.',
         technologies: ['React','Tailwind.css','node.js'],
-        projectUrl: '/eyosiyas.dev', 
+        projectUrl: 'https://eyosiyasshisema-portfolio.netlify.app/', 
       },
       {
         id: 4,
@@ -505,7 +505,7 @@ function App() {
       e.preventDefault();
       setSubmissionStatus('Sending...'); 
       try {
-        const response = await fetch('/api/contact', {
+        const response = await fetch('https://my-portfolio-t58g.onrender.com/api/contact', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
