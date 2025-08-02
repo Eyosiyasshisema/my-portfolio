@@ -13,18 +13,6 @@ const LinkedInIcon = ({ size = 24, className }) => (
   </svg>
 );
 
-const XTwitterIcon = ({ size = 24, className }) => (
-  <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height={size} width={size} className={className} xmlns="http://www.w3.org/2000/svg">
-    <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.7L136.9 88.1H92.7L364.4 421.8z"></path>
-  </svg>
-);
-
-const EnvelopeIcon = ({ size = 24, className }) => (
-  <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height={size} width={size} className={className} xmlns="http://www.w3.org/2000/svg">
-    <path d="M502.3 190.5C502.3 85.31 417 0 311.8 0H200.2C95.04 0 92.42 85.31 92.42 190.5V321.5C92.42 426.7 177.7 512 282.9 512H394.5C499.7 512 502.3 426.7 502.3 321.5V190.5zM256 352C216.4 352 184 319.6 184 280C184 240.4 216.4 208 256 208C295.6 208 328 240.4 328 280C328 319.6 295.6 352 256 352zM432 208C448.2 208 461.3 221.1 461.3 237.3C461.3 253.5 448.2 266.7 432 266.7C415.8 266.7 402.7 253.5 402.7 237.3C402.7 221.1 415.8 208 432 208z"></path>
-  </svg>
-);
-
 const AnimatedDiv = ({ children, className, delay }) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef(null);
@@ -46,7 +34,7 @@ const AnimatedDiv = ({ children, className, delay }) => {
         observer.unobserve(ref.current);
       }
     };
-  }, []);
+  }, [ref]);
 
   return (
     <div
@@ -250,7 +238,7 @@ function App() {
           if (ref) observer.unobserve(ref);
         });
       };
-    }, []);
+    }, [paragraphRefs]);
   
     return (
       <section id="about-section" className="min-h-screen flex items-center justify-center bg-gray-900 text-white py-20 px-8">
@@ -290,7 +278,7 @@ function App() {
           <AnimatedDiv delay={300} className="w-full md:w-1/3 flex-shrink-0 mt-12 md:mt-0 sticky top-20">
             <img
               src="https://raw.githubusercontent.com/Eyosiyasshisema/image-assets/refs/heads/main/photo_2025-07-31_18-42-30.jpg"
-              alt="A profile picture of the portfolio owner."
+              alt="A profile headshot of the portfolio owner."
               className="rounded-full w-48 h-48 md:w-64 md:h-64 object-cover border-4 border-blue-500 shadow-lg mx-auto"
             />
           </AnimatedDiv>
@@ -492,7 +480,7 @@ const ProjectsSection = () => {
             {techLogos.map((logo, index) => (
               <AnimatedDiv key={index} delay={index * 100}>
                 <div className="p-4 bg-gray-700 rounded-lg shadow-xl cursor-pointer hover:scale-110 rotate-3 transition-transform duration-300">
-                  <img src={logo} alt="Tech Logo" className="h-16 w-16 md:h-20 md:w-20 object-contain" />
+                  <img src={logo} alt="Tech " className="h-16 w-16 md:h-20 md:w-20 object-contain" />
                 </div>
               </AnimatedDiv>
             ))}
