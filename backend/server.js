@@ -10,7 +10,6 @@ const port =process.env.PORT;
 
 app.use(express.json());
 app.use(cors({
-  origin: 'https://eyosiyasshisema-portfolio.netlify.app/'
 }));
 
 
