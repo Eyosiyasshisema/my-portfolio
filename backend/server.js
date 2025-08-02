@@ -6,10 +6,12 @@ import dotenv from 'dotenv';
 dotenv.config(); 
 
 const app = express();
-const port = 3001;
+const port =process.env.PORT;
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'https://eyosiyasshisema-portfolio.netlify.app/'
+}));
 
 
 const transporter = nodemailer.createTransport({
