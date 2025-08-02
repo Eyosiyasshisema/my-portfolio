@@ -26,17 +26,18 @@ const AnimatedDiv = ({ children, className, delay }) => {
       },
       { threshold: 0.1 }
     );
+    const currentRef = ref.current;
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
-  }, []); 
+  }, []);
 
   return (
     <div
@@ -214,35 +215,34 @@ function App() {
   const AboutSection = () => {
     const [activeParagraph, setActiveParagraph] = useState(0);
     const paragraphRefs = useRef([]);
-  
     useEffect(() => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const index = parseInt(entry.target.dataset.index, 10);
-              setActiveParagraph(index);
-            }
-          });
-        },
-        {
-          root: null,
-          rootMargin: '-50% 0px -50% 0px',
-          threshold: 0
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = parseInt(entry.target.dataset.index, 10);
+          setActiveParagraph(index);
         }
-      );
-  
-      paragraphRefs.current.forEach(ref => {
-        if (ref) observer.observe(ref);
       });
-  
-      return () => {
-        paragraphRefs.current.forEach(ref => {
-          if (ref) observer.unobserve(ref);
-        });
-      };
-    }, []);
-  
+    },
+    {
+      root: null,
+      rootMargin: '-50% 0px -50% 0px',
+      threshold: 0
+    }
+  );
+  const currentParagraphs = paragraphRefs.current;
+
+  currentParagraphs.forEach(ref => {
+    if (ref) observer.observe(ref);
+  });
+
+  return () => {
+    currentParagraphs.forEach(ref => {
+      if (ref) observer.unobserve(ref);
+    });
+  };
+}, []);
     return (
       <section id="about-section" className="min-h-screen flex items-center justify-center bg-gray-900 text-white py-20 px-8">
         <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center md:items-start md:space-x-12 relative">
