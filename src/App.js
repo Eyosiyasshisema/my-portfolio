@@ -454,15 +454,15 @@ function App() {
 
   const TechStacksSection = () => {
     const techLogos = [
-      'http://googleusercontent.com/image_collection/image_retrieval/17133749150834914974',
-      'http://googleusercontent.com/image_collection/image_retrieval/2404482896725681965',
+      'https://upload.wikimedia.org/wikipedia/commons/5/5a/LangChain_Logo.svg',
+      'https://langchain-ai.github.io/langgraphjs/img/langgraph_logo.svg',
       'https://cdn.worldvectorlogo.com/logos/fastapi-1.svg',
       'https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg',
       'https://upload.wikimedia.org/wikipedia/commons/6/64/Expressjs.png',
       'https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg',
       'https://www.mysql.com/common/logos/mysql-logo.svg',
       'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/redis.svg',
-      'http://googleusercontent.com/image_collection/image_retrieval/8381514040157514156',
+      'https://raw.githubusercontent.com/tiangolo/sqlmodel/master/docs/en/img/icon.svg',
       'https://upload.wikimedia.org/wikipedia/commons/9/93/MongoDB_Logo.svg',
       'https://upload.wikimedia.org/wikipedia/commons/1/17/GraphQL_Logo.svg',
       'https://upload.wikimedia.org/wikipedia/commons/4/4e/Docker_%28container_engine%29_logo.svg',
