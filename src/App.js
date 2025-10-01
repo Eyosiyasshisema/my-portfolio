@@ -376,27 +376,34 @@ function App() {
     const projectsData = [
       {
         id: 1,
+        title: 'ጓደኛ (Buddy) ',
+        description: 'This project is a full-stack, personalized AI chatbot application designed to offer users a customizable virtual friend experience. It utilizes cutting-edge LLM technology (Google Gemini) and a robust backend architecture to maintain user-specific identity, history, and state across sessions.',
+        technologies: ['FastAPI','LangChain','LangGraph', 'Redis','PostgreSQL','SQLModel','JWT ' ,'Bcrypt','Render'],
+        projectUrl: 'https://guadegnabuddy.netlify.app/', 
+      },
+       {
+        id: 2,
         title: 'Couples App ',
         description: 'A backend API for a couples relationship application. It provides the server-side logic for user authentication, game management, and data persistence, enabling interactive and engaging experiences for couples.',
         technologies: ['Node.js','flutter', 'Express', 'Postgres', 'Socket.io','jwt'],
         projectUrl: 'https://github.com/Eyosiyasshisema/couples-app-backend-modified', 
       },
       {
-        id: 2,
+        id: 3,
         title: 'Telegram Reminder Bot',
         description: 'A conversational Telegram bot designed to help users efficiently manage their tasks and schedules by setting personalized reminders. It also supports both one-time and recurrence reminders. Built with Node.js and the Telegraf.js framework, the bot offers a seamless and interactive user experience.',
         technologies: ['Node.js', 'Telegraf', 'Postgres', 'Render'],
         projectUrl: 'https://github.com/Eyosiyasshisema/reminderBot', 
       },
       {
-        id: 3,
+        id: 4,
         title: 'Portfolio Website',
         description: 'The very website you are viewing! A personal portfolio showcasing projects, skills, and contact information. Designed with a clean, minimalist aesthetic and full responsiveness.',
         technologies: ['React','Tailwind.css','node.js'],
         projectUrl: 'https://eyosiyasshisema-portfolio.netlify.app/', 
       },
       {
-        id: 4,
+        id: 5,
         title: 'Lexical Analysis Compliler',
         description: 'A compiler built with c++ that performs lexical and semantic analysis',
         technologies: ['c++'],
