@@ -375,18 +375,18 @@ function App() {
   const ProjectsSection = () => {
     const projectsData = [
       {
-        id: 1,
+        id: 2,
         title: 'The FPL Scout AI',
         description: 'The FPL Scout AI is your personal tactical manager, built to transform raw data into a decisive strategic advantage. We move beyond simple statistics, providing actionable, intelligent insights designed specifically to help you climb the ranks and dominate your mini-leagues.',
         technologies: ['FastAPI','NextJs','LangChain','LangGraph', 'PostgreSQL','SQLModel','JWT ' ,'Bcrypt','Render','vercel'],
         projectUrl: 'https://fpl-ai-advisor.vercel.app/', 
       },
       {
-        id: 2,
+        id: 1,
         title: 'ጓደኛ (Buddy) ',
         description: 'This project is a full-stack, personalized AI chatbot application designed to offer users a customizable virtual friend experience. It utilizes cutting-edge LLM technology (Google Gemini) and a robust backend architecture to maintain user-specific identity, history, and state across sessions.',
         technologies: ['Nextjs','FastAPI','LangChain','LangGraph', 'Redis','PostgreSQL','SQLModel','JWT ' ,'Bcrypt','Render'],
-        projectUrl: 'https://guadegnabuddy.netlify.app/', 
+        projectUrl: 'https://guadegna-buddy.onrender.com', 
       },
        {
         id: 3,
